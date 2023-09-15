@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>{{ title }}</title>
+{% endblock %}
+
+
+{% block content %}
+<form class="row g-3" method="get" onsubmit="sendMessage(event); window.location.href = '/web/menu'">
+<!--<form class="row g-3" onsubmit="sendMessage(event)">-->
+
+    <div class="mb-3">
+      <label for="messageText" class="form-label">{{ title }}</label>
+      <textarea class="form-control" id="messageText" rows="3" required minlength="5"></textarea>
+    </div>
+
+    <button class="btn btn-outline-success" type="submit">Відправити повідомлення</button>
+
+
+</form>
+
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+    {% block title %}
+    <title>{{ title }}</title>
+    {% endblock %}
+
+
+
+{% block content %}
+
+    {% if is_admin %}
+        <p class="h1">flkjhggfhkllljgkljjjg</p>
+    {% endif %}
+
+
+    {% if menu %}
+
+        <p class="h1">{{ title }}</p>
+        <ul>
+        {% for dish in menu %}
+            <br>
+    <!--        <p class="h2">{{ dish['title'] }}</p>-->
+            <p class="h2">{{ dish.title }}</p>
+            <img src="{{ url_for('static', path='images/' + dish.image) }}" alt="" width="200" height="200">
+            <p class="h4">{{ dish.price }}</p>
+            <hr>
+
+        {% endfor %}
+        </ul>
+    {% else %}
+            <p class="h2">немає доступних позицій</p>
+    {% endif %}
+
+
+{% endblock %}
