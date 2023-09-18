@@ -59,13 +59,18 @@
                     <a class="nav-link disabled" aria-disabled="true">Авторизація</a>
                 </li>
 
-                {% if is_admin %}
+                {% if user %}
+
+
                  <li class="nav-item">
-                    <a class="nav-link" href="/web/about-us">Залогуватися</a>
+                    <a class="nav-link" href="/web/logout">Вийти,  {{ user.name }}</a>
                 </li>
                 {% else %}
                  <li class="nav-item">
-                    <a class="nav-link" href="/web/about-us">Розлогуватися</a>
+                    <a class="nav-link" href="/web/register">Зареєструватися</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/web/login">Ввійти</a>
                 </li>
                 {% endif %}
 

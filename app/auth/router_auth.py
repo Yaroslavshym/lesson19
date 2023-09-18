@@ -50,5 +50,5 @@ async def login_api(response: Response, user_data: AuthLogin):
 @router.post('/logout')
 async def logout_api(response: Response, user=Depends(dependencies.get_current_user_required)):
     response.delete_cookie('token')
-    return {'user': user.login, "logged_out": True}
+    return {'user': 'yep', "logged_out": True}
 

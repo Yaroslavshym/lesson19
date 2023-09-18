@@ -30,22 +30,33 @@ class AuthHandler:
             'iat': datetime.utcnow(),
             'user_id': user_id
         }
-        return jwt.encode(
-            payload,
-            cls.secret,
-            algorithm=cls.algorithm,
-        )
+        return jwt.encode(payload, "secret", algorithm="HS256")
+        # return jwt.encode(
+        #     payload,
+        #     cls.secret,
+        #     algorithm=cls.algorithm,
+        # )
 
     @classmethod
     async def decode_token(cls, token: str) -> dict:
+        # jwt.decode(encoded_jwt, "secret", algorithms=["HS256"])
         try:
-            payload = jwt.decode(token, cls.secret, algorithms=[cls.algorithm])
+            payload = jwt.decode(token, 'secret', algorithms=["HS256"])
             return payload
         except jwt.ExpiredSignatureError:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Signature has expired')
         except jwt.InvalidTokenError:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Invalid token')
 
+    @classmethod
+    async def decode_token_web(cls, token: str | None) -> dict:
+        try:
+            payload = jwt.decode(token, cls.secret, algorithms=[cls.algorithm])
+            return payload
+        except jwt.ExpiredSignatureError:
+            return {}
+        except jwt.InvalidTokenError:
+            return {}
 
 class AuthLibrary:
 

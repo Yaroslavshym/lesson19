@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>{{ title }}</title>
+{% endblock %}
+
+
+{% block content %}
+<form method="post" action="/web/register-final">
+
+    <div class="mb-3">
+      <label for="login" class="form-label">Логін</label>
+      <input name='login' type='email'class="form-control" id="login" required placeholder="exampe@gmail.com">
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Пароль</label>
+      <input name='password' type='password' class="form-control" id="password" required minlength='{{ min_password_length }}'>
+    </div>
+    <div class="mb-3">
+      <label for="name" class="form-label">Ім'я</label>
+      <input name='name' type='text' class="form-control" id="name" required minlength='3'>
+    </div>
+    <div class="mb-3">
+      <label for="notes" class="form-label">Примітки</label>
+      <input name='notes' type='text' class="form-control" id="notes">
+    </div>
+    <button class="btn btn-outline-success" type="submit">Відправити повідомлення</button>
+
+
+</form>
+{% endblock %}

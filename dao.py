@@ -20,7 +20,7 @@ async def create_user(
             password=password,
             notes=notes,
             is_conflict=is_conflict,
-        ).returning(User.id, User.login)
+        ).returning(User.id, User.login, User.name)
         print(query)
         data = await session.execute(query)
         await session.commit()

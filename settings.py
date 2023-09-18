@@ -19,6 +19,7 @@ class Settings:
     TOKEN_ALGORITHM = os.getenv('TOKEN_ALGORITHM') or ''
 
     MAX_NOTES_LENGTH = 200
+    MIN_PASSWORD_LENGTH = 8
 
     @property
     def DATABASE_URL(self):
