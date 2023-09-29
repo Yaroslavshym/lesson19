@@ -8,6 +8,26 @@
 
 {% block content %}
 
+
+{% if categories %}
+    <h3>Категорії</h3>
+
+    <div class="container-fluid">
+        <div class="row" style="padding:10px">
+            <div>
+                {% for c in categories %}
+                <a type="button" href="/web/by_category/{{ c.value }}" class="btn btn-primary" style="margin:2px">{{ c.value }}</a>
+                {% endfor %}
+
+            </div>
+        </div>
+
+    </div>
+
+
+{% endif %}
+
+
     {% if is_admin %}
         <p class="h1">flkjhggfhkllljgkljjjg</p>
     {% endif %}

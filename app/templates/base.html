@@ -48,11 +48,14 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/web/map">Карта проїзду</a></li>
-                        <li><a class="dropdown-item" href="/web/message">Написати всім повідомлення</a></li>
+
+                        {% if user %}
                         <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a class="dropdown-item" href="/web/message">Написати всім повідомлення</a></li>
+                        {% endif %}
+
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -60,10 +63,8 @@
                 </li>
 
                 {% if user %}
-
-
                  <li class="nav-item">
-                    <a class="nav-link" href="/web/logout">Вийти,  {{ user.name }}</a>
+                    <a class="nav-link" href="/web/logout">Вийти, {{ user[2] if user[2] else user.name }}</a>
                 </li>
                 {% else %}
                  <li class="nav-item">
@@ -73,6 +74,8 @@
                     <a class="nav-link" href="/web/login">Ввійти</a>
                 </li>
                 {% endif %}
+
+
 
             </ul>
             <form class="d-flex" role="search" method="post" action="/web/search">
@@ -90,8 +93,8 @@
 
 
     <script>
-<!--        var ws = new WebSocket("ws://127.0.0.1:8000/ws/");-->
-        var ws = new WebSocket("wss://6429-188-130-177-189.ngrok-free.app/ws/");
+        var ws = new WebSocket("ws://127.0.0.1:8000/ws/");
+<!--        var ws = new WebSocket("wss://6429-188-130-177-189.ngrok-free.app/ws/");-->
 
         ws.onmessage = function(event) {
             console.log(event)

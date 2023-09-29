@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>{{ title }}</title>
+{% endblock %}
+
+
+{% block content %}
+<p class="h1">{{ title }}</p>
+
+<form method="post" action="/web/login-final">
+
+    <div class="mb-3">
+      <label for="login" class="form-label">Логін</label>
+      <input name="login" type="email"  class="form-control" id="login" required placeholder="name@example.com">
+    </div>
+
+        <div class="mb-3">
+      <label for="password" class="form-label">Пароль</label>
+      <input name="password" type="password"  class="form-control" id="password" required minlength="{{ min_password_length }}">
+    </div>
+
+    <button class="btn btn-outline-success" type="submit">{{ title }}</button>
+
+
+</form>
+
+
+
+{% endblock %}
