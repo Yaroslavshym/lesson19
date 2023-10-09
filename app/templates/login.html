@@ -8,7 +8,7 @@
 {% block content %}
 <p class="h1">{{ title }}</p>
 
-<form method="post" action="/web/login-final">
+<form method="post" action="/login-final">
 
     <div class="mb-3">
       <label for="login" class="form-label">Логін</label>
@@ -20,7 +20,7 @@
       <input name="password" type="password"  class="form-control" id="password" required minlength="{{ min_password_length }}">
     </div>
 
-    <button class="btn btn-outline-success" type="submit">{{ title }}</button>
+    <button class="btn btn-outline-danger" type="submit">{{ title }}</button>
 
 
 </form>

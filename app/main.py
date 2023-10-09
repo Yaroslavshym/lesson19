@@ -5,7 +5,7 @@ import sentry_sdk
 
 from app.web_pages import router_web_pages
 from app.auth import router_auth
-from app.sockets import router_websocket
+from app.sockets import router_web_socket
 
 
 sentry_sdk.init(
@@ -24,7 +24,7 @@ app.mount('/app/static', StaticFiles(directory='app/static'), name='static')
 
 app.include_router(router_web_pages.router)
 app.include_router(router_auth.router)
-app.include_router(router_websocket.router)
+app.include_router(router_web_socket.router)
 
 
 @app.get('/')

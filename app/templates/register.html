@@ -2,30 +2,69 @@
 
 {% block title %}
 <title>{{ title }}</title>
+<style>
+  div{margin-top: 10px;}
+  label{font-size: 30px;}
+  input{font-size: 30px;}
+</style>
 {% endblock %}
 
 
 {% block content %}
-<form method="post" action="/web/register-final">
+<form method="post" action="/web/register-final" style="vertical-align: middle;">
+  
+  <!--Name-->
+    <div class="col-md-2">
+      <div style="margin: 0px;">
+        <label for="name" class="form-label">First name</label>
+      </div>
+      <input name="name" type="text" class="sendRegisterData" id="name" placeholder="Name"  value="" required>
+      <div style="margin: 0px;" class="invalid-feedback">Please write your name.</div>
+  
+    </div>
+  <!--Surname-->
+    <div class="col-md-1">
+      <div style="margin: 0px;">
+        <label for="surname" class="form-label">Last name</label>
+      </div>
+      <input name="surname" type="text" class="sendRegisterData" id="surname" placeholder="Surname" value="" required>
+    </div>
 
-    <div class="mb-3">
-      <label for="login" class="form-label">Логін</label>
-      <input name='login' type='email'class="form-control" id="login" required placeholder="exampe@gmail.com">
-    </div>
-    <div class="mb-3">
-      <label for="password" class="form-label">Пароль</label>
-      <input name='password' type='password' class="form-control" id="password" required minlength='{{ min_password_length }}'>
-    </div>
-    <div class="mb-3">
-      <label for="name" class="form-label">Ім'я</label>
-      <input name='name' type='text' class="form-control" id="name" required minlength='3'>
-    </div>
-    <div class="mb-3">
-      <label for="notes" class="form-label">Примітки</label>
-      <input name='notes' type='text' class="form-control" id="notes">
-    </div>
-    <button class="btn btn-outline-success" type="submit">Відправити повідомлення</button>
 
+  
+  <!-- Email-->
+  <div class="col-md-2">
+    <div style="margin: 0px;">
+      <label for="login" class="form-label">Email</label>
+    </div>
+    <input name="login" type="email" class="sendRegisterData" id="login" placeholder="example@gmail.com" value="" required>
+  </div>
+  <!-- Password -->
+  <div class="col-md-2">
+    <div style="margin: 0px;">
+      <label for="password" class="form-label">Password</label>
+    </div>
+    <input name="password" type="password" class="sendRegisterData" id="login" placeholder="Password12345" value="" required>
+  </div>
 
+  <div style="margin-top: 15px;" class="col-12">
+    <button class="btn btn-outline-danger" type="submit">Register</button>
+  </div>
 </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}

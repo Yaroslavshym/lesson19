@@ -3,23 +3,22 @@ import asyncio
 from sqlalchemy import insert, select, update, delete
 
 from database import async_session_maker
-from models import User, Order
+from models import User
 
-
+# table User
 async def create_user(
         name: str,
+        surname: str,
         login: str,
         password: str,
-        notes: str = '',
-        is_conflict: bool = False,
+
 ):
     async with async_session_maker() as session:
         query = insert(User).values(
             name=name,
+            surname=surname,
             login=login,
             password=password,
-            notes=notes,
-            is_conflict=is_conflict,
         ).returning(User.id, User.login, User.name)
         print(query)
         data = await session.execute(query)
@@ -84,3 +83,5 @@ async def delete_user(user_id: int):
 #     await asyncio.gather(delete_user(2))
 #
 # asyncio.run(main())
+
+# table Image

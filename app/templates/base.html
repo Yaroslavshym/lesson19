@@ -1,8 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    
     <meta charset="UTF-8">
-    <link rel="shortcut icon" type="image/png" href="\app\static\favicon.ico">
+    <link rel="shortcut icon" type="image/png" href="/app/static/logoFP1.ico">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 
@@ -14,7 +15,53 @@
             crossorigin="anonymous"></script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+[type="file"] {
+  height: 0;
+  overflow: hidden;
+  width: 0;
+}
 
+[type="file"] + label {
+  background: rgb(203, 68, 74);
+  border: 1px;
+  border-color: rgb(203, 68, 74);
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+	font-family: 'Rubik', sans-serif;
+	font-size: inherit;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  outline: none;
+  padding: 1rem 50px;
+  position: relative;
+  transition: all 0.3s;
+  vertical-align: middle;}
+  [type="file"] + label:hover{
+    background: rgb(31, 31, 31);;
+    border: 1px;
+    border-color: rgb(203, 68, 74);}
+    [type="file"] + label.btn-3 {
+    border-radius: 50;
+    }
+
+
+    </style>
+    <style>
+        div{
+            margin-left: 30px;
+        }
+        body{
+            background-color: rgb(31, 31, 31);
+            color: aliceblue;
+        }
+        nav{
+            color: aliceblue;
+        }
+        
+    </style>
 
     {% block title %}
     {% endblock %}
@@ -22,12 +69,13 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+
+<nav class="navbar navbar-expand-lg">
     <div class="container-fluid">
 
-        <img src="{{ url_for('static', path='images/image(1).png') }}" alt="" width="35" height="35">
+        <img src="{{ url_for('static', path='logoFP1.ico') }}" alt="" width="35" height="35">
 <!--        <img src="https://images.unian.net/photos/2022_09/thumb_files/1200_0_1662892107-3846.jpg" alt="" width="35" height="35">-->
-        <div class="navbar-brand">Pizza Mamma Mia</div>
+        <div style="color: aliceblue;" class="navbar-brand">Recipes.com</div>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,42 +84,46 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/web/menu">Меню</a>
+                    <a style="color: aliceblue;" class="nav-link active" aria-current="page" href="/web/menu">Меню</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/web/about-us">Про нас</a>
+                    <a style="color: aliceblue;" class="nav-link" href="/web/about-us">Про нас</a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                <li class="nav-item">
+                    <a style="color: aliceblue;" class="nav-link" href="/web/map">Карта проїзду</a>
+                </li>
+                <li class="nav-item">
+                    <a style="color: aliceblue;" class="nav-link" href="/web/message">Написати всім повідомлення</a>
+                </li>
+
+                <!-- <li class="nav-item dropdown">
+                    <a style="color: aliceblue;" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                        aria-expanded="false">
                         Додаткові дії
                     </a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="/web/map">Карта проїзду</a></li>
+                    <ul background-color: rgb(31, 31, 31); class="dropdown-menu">
+                        <li><a style="color: aliceblue; background-color: rgb(31, 31, 31);" class="dropdown-item" href="/web/map">Карта проїзду</a></li>
 
-                        {% if user %}
-                        <li>
+                      {% if user %}{% endif %}-->
+                        <!-- <li>
                             <hr class="dropdown-divider">
                         </li>
-                        <li><a class="dropdown-item" href="/web/message">Написати всім повідомлення</a></li>
-                        {% endif %}
+                        <li><a style="color: aliceblue; background-color: rgb(31, 31, 31);" class="dropdown-item" href="/web/message">Написати всім повідомлення</a></li>
+ --> 
 
                     </ul>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" aria-disabled="true">Авторизація</a>
                 </li>
 
                 {% if user %}
                  <li class="nav-item">
-                    <a class="nav-link" href="/web/logout">Вийти, {{ user[2] if user[2] else user.name }}</a>
+                    <a style="color: aliceblue;" class="nav-link" href="/web/logout">Вийти, {{ user[2] if user[2] else user.name }}</a>
                 </li>
                 {% else %}
                  <li class="nav-item">
-                    <a class="nav-link" href="/web/register">Зареєструватися</a>
+                    <a style="color: aliceblue;" class="nav-link" href="/web/register">Зареєструватися</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/web/login">Ввійти</a>
+                    <a style="color: aliceblue;" class="nav-link" href="/web/login">Ввійти</a>
                 </li>
                 {% endif %}
 
@@ -81,7 +133,9 @@
             <form class="d-flex" role="search" method="post" action="/web/search">
                 <input class="form-control me-2" type="search" name="dish_name" placeholder="введіть вашу страву ..."
                        aria-label="Search" required minlength="3">
-                <button class="btn btn-outline-success" type="submit">Пошук</button>
+                <button class="btn btn-outline-danger" type="submit">Search</button>
+
+
             </form>
         </div>
     </div>
@@ -93,7 +147,7 @@
 
 
     <script>
-        var ws = new WebSocket("ws://127.0.0.1:8000/ws/");
+        var ws = new WebSocket("ws://127.0.0.1:9000/ws/");
 <!--        var ws = new WebSocket("wss://6429-188-130-177-189.ngrok-free.app/ws/");-->
 
         ws.onmessage = function(event) {

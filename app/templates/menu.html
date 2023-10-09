@@ -7,19 +7,37 @@
 
 
 {% block content %}
+<form class="col-md-2" method="get" action="/web/upload" enctype="multipart/form-data" class="form-inline">
+    <label for="formFileMultiple" class="form-label">Choose Images: </label>
+    <!-- <button type="input" name="files[]" id="fileInput" class="form-control" multiple>Chose file</button> -->
+
+    <input  type="file" name="files[]" id="fileInput" multiple >
+    
+    <input  type="submit" name="submit" class="btn btn-outline-danger" value="UPLOAD"/>
+</form>
+
+
+<input type="file" id="file" />
+  <label for="file" class="btn-2">upload</label>
+<input type="file" id="file" />
+  <label for="file" class="btn-3">
+    <span>select</span>
+  </label>
+  
+
+
+  
 
 
 {% if categories %}
-    <h3>Категорії</h3>
+    <h3>Categories</h3>
 
     <div class="container-fluid">
-        <div class="row" style="padding:10px">
-            <div>
-                {% for c in categories %}
-                <a type="button" href="/web/by_category/{{ c.value }}" class="btn btn-primary" style="margin:2px">{{ c.value }}</a>
-                {% endfor %}
+        <div>
+            {% for c in categories %}
+            <a type="button" href="/by_category/{{ c.value }}" class="btn btn-primary" style="margin:2px">{{ c.value }}</a>
+            {% endfor %}
 
-            </div>
         </div>
 
     </div>
@@ -32,7 +50,7 @@
         <p class="h1">flkjhggfhkllljgkljjjg</p>
     {% endif %}
 
-
+    
     {% if menu %}
 
         <p class="h1">{{ title }}</p>
@@ -48,8 +66,12 @@
         {% endfor %}
         </ul>
     {% else %}
-            <p class="h2">немає доступних позицій</p>
+            <p class="h2">We have nothing to offer based on your requirements</p>
     {% endif %}
 
 
 {% endblock %}
+
+
+
+

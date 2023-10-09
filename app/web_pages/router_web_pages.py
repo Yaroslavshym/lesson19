@@ -1,6 +1,7 @@
-from fastapi import APIRouter, Request, Form, HTTPException, status, Depends, Response
+from fastapi import APIRouter, Request, Form, HTTPException, status, Depends, Response, UploadFile, File
 from fastapi.templating import Jinja2Templates
 from pydantic import EmailStr
+import shutil
 
 from app import menu_data
 from app.auth.auth_lib import AuthHandler, AuthLibrary
@@ -113,6 +114,7 @@ async def message(request: Request):
 @router.get('/register')
 @router.post('/register')
 async def register(request: Request):
+    print(5555555, request)
     context = {
         'request': request,
         'title': 'Реєстрація',
@@ -128,8 +130,8 @@ async def register(request: Request):
 @router.post('/register-final')
 async def register_final(request: Request,
                          name: str = Form(),
+                         surname: str = Form(),
                          login: EmailStr = Form(),
-                         notes: str = Form(default=''),
                          password: str = Form()):
     is_login_already_used = await dao.get_user_by_login(login)
     if is_login_already_used:
@@ -146,17 +148,14 @@ async def register_final(request: Request,
     hashed_password = await AuthHandler.get_password_hash(password)
     user_data = await dao.create_user(
         name=name,
+        surname=surname,
         login=login,
         password=hashed_password,
-        notes=notes,
     )
     token = await AuthHandler.encode_token(user_data[0])
     context = {
         'request': request,
-        'title': 'Про нас',
-        'menu': menu_data.menu,
         'user': user_data,
-        'categories': menu_data.Categories
     }
     template_response = templates.TemplateResponse(
         'menu.html',
@@ -232,3 +231,11 @@ async def by_category(category_name: str, request: Request, user=Depends(depende
         'menu.html',
         context=context,
     )
+
+@router.post('/upload')
+async def upload_file(file: UploadFile = File(...)):
+    
+    with open('test.png', "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+    print(file)
+    return 1
