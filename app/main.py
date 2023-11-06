@@ -21,7 +21,14 @@ app = FastAPI(
 )
 
 app.mount('/app/static', StaticFiles(directory='app/static'), name='static')
+app.mount('/app/images2fa', StaticFiles(directory='app/images2fa'), name='images2fa')
+app.mount('/app/templatesJS', StaticFiles(directory='app/templatesJS'), name='registerjs')
+app.mount('/app/templatesJS', StaticFiles(directory='app/templatesJS'), name='add_recipejs')
+app.mount('/app/templatesJS', StaticFiles(directory='app/templatesJS'), name='change_profile_infojs')
 
+
+# app/images2fa/qrcode.png
+# app/templatesJS/registerJS.js
 app.include_router(router_web_pages.router)
 app.include_router(router_auth.router)
 app.include_router(router_web_socket.router)

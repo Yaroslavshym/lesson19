@@ -3,67 +3,103 @@
 {% block title %}
 <title>{{ title }}</title>
 <style>
-  div{margin-top: 10px;}
-  label{font-size: 30px;}
-  input{font-size: 30px;}
+  div {
+    margin-top: 10px;
+  }
+
+  label {
+    font-size: 30px;
+  }
+
+  input {
+    font-size: 30px;
+  }
+
+  .inputInfo {
+    /* margin-left: 10%; */
+    /* text-align: center; */
+    background-color: rgb(31, 31, 31);
+  }
+
+  input {
+    background-color: rgb(31, 31, 31);
+    color: white;
+    border: none;
+
+  }
 </style>
+
 {% endblock %}
 
 
 {% block content %}
-<form method="post" action="/web/register-final" style="vertical-align: middle;">
-  
+<form method="post" action="/web/register-final">
+
   <!--Name-->
-    <div class="col-md-2">
-      <div style="margin: 0px;">
-        <label for="name" class="form-label">First name</label>
-      </div>
-      <input name="name" type="text" class="sendRegisterData" id="name" placeholder="Name"  value="" required>
-      <div style="margin: 0px;" class="invalid-feedback">Please write your name.</div>
-  
+  <div>
+    <div class="inputInfo">
+      <label style="text-align: center;" for="name" class="form-label">First name:</label>
+      <input name="name" type="text" class="sendRegisterData" id="name" placeholder="Name" value="" required>
     </div>
-  <!--Surname-->
-    <div class="col-md-1">
-      <div style="margin: 0px;">
-        <label for="surname" class="form-label">Last name</label>
-      </div>
+
+    <!--Surname-->
+    <div class="inputInfo">
+      <label for="surname" class="form-label">Surname:</label>
       <input name="surname" type="text" class="sendRegisterData" id="surname" placeholder="Surname" value="" required>
     </div>
 
 
-  
-  <!-- Email-->
-  <div class="col-md-2">
-    <div style="margin: 0px;">
+
+    <!-- Email-->
+    <div class="inputInfo">
       <label for="login" class="form-label">Email</label>
+      <input name="login" type="email" class="sendRegisterData" id="login" placeholder="example@gmail.com" value=""
+        required>
     </div>
-    <input name="login" type="email" class="sendRegisterData" id="login" placeholder="example@gmail.com" value="" required>
-  </div>
-  <!-- Password -->
-  <div class="col-md-2">
-    <div style="margin: 0px;">
-      <label for="password" class="form-label">Password</label>
+    <!-- Password -->
+
+    <div class="inputInfo">
+      <label class="form-label">Password</label>
+      <input name="password" type="password" class="sendRegisterData" id="password" placeholder="Password12345" value=""
+        required>
     </div>
-    <input name="password" type="password" class="sendRegisterData" id="login" placeholder="Password12345" value="" required>
+
+
+    <!-- 2FA checkbox -->
+    <div class="inputInfo">
+      <label>Double Authentication: </label>
+      <input style="height: 20px; width: 20px;" type="checkbox" id='myCheckBox' onclick="show2FA()" checked>
+    </div>
+
+    <!-- Qr code -->
+
+    <div class="inputInfo">
+      <label id="otpLabel">Scan qr here:</label>
+    </div>
+    <div class="inputInfo">
+      <img id="otpQR" src="{{ url_for('images2fa', path='qrcode.png') }}" style="height:370px; width: 370px;">
+    </div>
+    <!-- otp password -->
+
+    <div class="inputInfo">
+      <label id="otpLabel2">Password</label>
+      <input id="otpPasswordInput" placeholder="987654" value="">
+    </div>
+
+
+    <!-- submit button -->
+    <div class="inputInfo">
+      <button class="btn btn-outline-danger" type="submit" href="/web/menu" >Register</button>
+    </div>
   </div>
 
-  <div style="margin-top: 15px;" class="col-12">
-    <button class="btn btn-outline-danger" type="submit">Register</button>
-  </div>
+
+  <script src="{{ url_for('registerjs', path='registerJS.js') }}">
+    
+  </script>
+
+
 </form>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

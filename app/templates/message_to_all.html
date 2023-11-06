@@ -6,12 +6,22 @@
 
 
 {% block content %}
-<form class="row g-3" method="get" >
+<style>
+  div {
+    margin-left: 10px;
+  }
+  button {
+    margin-left: 10px;
+  }
+  
+</style>
+<form style="margin-top: 25px" class="row g-3" method="get" >
 <!--    onsubmit="sendMessage(event); window.location.href = 'web/menu'"-->
 <!--<form class="row g-3" onsubmit="sendMessage(event)">-->
 
     <div class="mb-3">
       <label for="messageText" class="form-label">{{ title }}</label>
+    </div><div>
       <textarea class="form-control" id="messageText" rows="3" required minlength="5"></textarea>
     </div>
 

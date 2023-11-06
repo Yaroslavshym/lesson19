@@ -27,7 +27,26 @@ class User(BaseInfoMixin, Base):
     is_admin = Column(Boolean, default=False)
 
     def __repr__(self) -> str:
-        return f'User {self.name} -> #{self.id}'
+        ddict = {'id': self.id, 'name': self.name, 'login': self.login, 'password': self.password, 'is_admin': self.is_admin}
+        return str(ddict)
 
+class Recipe(BaseInfoMixin, Base):
+    __tablename__ = 'recipe'
 
+    user_id = Column(ForeignKey('user.id'))
+    # image_name = Column(String, unique=True)
+    recipe_text = Column(String, unique=True)
+    recipe_title = Column(String)
+    def get_all_values(self):
+
+        return {'id':self.id,
+                'user_id':self.user_id,
+                'text': self.recipe_text,
+                'title': self.recipe_title}
+    def __repr__(self) -> str:
+        ddict = {'id': self.id, 'user_id': self.user_id, 'recipe_text': self.recipe_text, 'recipe_title': self.recipe_title}
+        return str(ddict)
+
+    
+    
 # https://github.com/irtiza07/photo-upload-full-stack

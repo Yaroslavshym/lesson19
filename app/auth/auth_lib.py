@@ -26,11 +26,11 @@ class AuthHandler:
     @classmethod
     async def encode_token(cls, user_id: int) -> str:
         payload = {
-            'exp': datetime.utcnow() + timedelta(days=0, minutes=5),
+            'exp': datetime.utcnow() + timedelta(days=0, minutes=60),
             'iat': datetime.utcnow(),
             'user_id': user_id
         }
-        return jwt.encode(payload, "secret", algorithm="HS256")
+        return jwt.encode(payload, cls.secret, algorithm="HS256")
         # return jwt.encode(
         #     payload,
         #     cls.secret,
@@ -41,7 +41,7 @@ class AuthHandler:
     async def decode_token(cls, token: str) -> dict:
         # jwt.decode(encoded_jwt, "secret", algorithms=["HS256"])
         try:
-            payload = jwt.decode(token, 'secret', algorithms=["HS256"])
+            payload = jwt.decode(token, cls.secret , algorithms=["HS256"])
             return payload
         except jwt.ExpiredSignatureError:
             raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Signature has expired')
@@ -50,8 +50,9 @@ class AuthHandler:
 
     @classmethod
     async def decode_token_web(cls, token: str | None) -> dict:
+
         try:
-            payload = jwt.decode(token, cls.secret, algorithms=[cls.algorithm])
+            payload = jwt.decode(token, cls.secret, algorithms=["HS256"])
             return payload
         except jwt.ExpiredSignatureError:
             return {}

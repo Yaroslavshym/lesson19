@@ -35,6 +35,15 @@ async def get_current_user_required(token=Depends(get_token)):
         )
     return user
 
+async def get_current_user_id(token=Depends(get_token)):
+    payload = await auth_lib.AuthHandler.decode_token_web(token)
+
+    user_id = payload.get('user_id')
+    if not user_id:
+        return None
+    return user_id
+
+
 
 async def get_current_user_optional(token=Depends(get_token_web)):
     payload = await auth_lib.AuthHandler.decode_token_web(token)
